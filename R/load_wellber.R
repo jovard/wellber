@@ -1,3 +1,13 @@
+#' Load the 2017 OECD Better Life data
+#'
+#' @return A list containing the 2017 OECD Better Life Index data in \code{\link{tibble}}
+#' form with indicator classes now included
+#' @export
+#' @importFrom repmis "source_data"
+#' @importFrom tibble "as_tibble"
+#' @importFrom dplyr "%>%" "select" "left_join"
+#' @seealso \code{\link{select.wellber}}, \code{\link{plot.wellber}}
+#' @examples data = load_wellber()
 load_wellber = function() {
 
   ### Required packages: repmis, dplyr, magrittr, tibble

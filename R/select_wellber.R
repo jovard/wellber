@@ -1,3 +1,11 @@
+#' Determine range based on choosen country index and plot window size
+#'
+#' @param tar_ctry_ind Target, or choosen country rank
+#' @param size Plot window size, either small (5), medium (11) or large (15)
+#'
+#' @return Returns a list of sequential country ranking IDs that include the ID for the choosen country
+#' @export
+#' @examples id.range = find.range.wellber(tar_ctry_ind=3, size=11)
 find.range.wellber <- function(tar_ctry_ind, size){
   # Conditional loop based on rank for 39 countries in dataset
   if ((39 - tar_ctry_ind) < ((size-1)/2)){
@@ -13,6 +21,24 @@ find.range.wellber <- function(tar_ctry_ind, size){
   }
 }
 
+#' Filters well-being data based on country, indicator, sample type and window size
+#'
+#' @param obj An object of class \code{wellber} from \code{\link{load_wellber}}
+#' @param country The selected OECD country to compare against, of which there are 39
+#' @param qual_ind The selected well-being indicator, of which there are 24
+#' @param samp_type The sample type to be considered, either total, men, women
+#' @param wind_size The size of the plot range, either small, medium or large
+#'
+#' @return Returns a list of class \code{wellber} that includes the filtered indicator dataset, with min and max values, and an indicator class dataset based on the indicator variable selected
+#' @export
+#' @importFrom dplyr "%>%" "filter" "arrange" "mutate" "desc" "row_number" "case_when" "group_by" "summarise" "slice"
+#' @importFrom magrittr "extract2"
+
+#' @seealso \code{\link{load.wellber}}, \code{\link{plot.wellber}}
+#' @examples
+#' data_object = load_wellber()
+#' subset_data = selector(data_object, country = 'Austria',
+#' qual_ind = 'Air pollution', samp_type = 'Total', wind_size = 'small')
 selector = function(obj, country, qual_ind, samp_type, wind_size) {
   UseMethod('selector')
 }

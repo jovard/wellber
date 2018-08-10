@@ -1,9 +1,31 @@
+#' Plot wellber object
+#'
+#' @param obj An object of class \code{wellber} output from \code{\link{select_wellber}}
+#' @param num_var A flag to indicate whether to plot the indicator or indicator class data
+#' @param ... Other arguments to plot
+#'
+#' @return Nothing is returned - plot is rendered
+#' @export
+#' @import ggplot2
+#' @importFrom dplyr "%>%"
+#' @importFrom magrittr "extract2"
+#' @importFrom stats "reorder"
+#' @seealso \code{\link{load.wellber}}, \code{\link{select.wellber}}
+#' @examples
+#' data_object = load_wellber()
+#' subset_data = selector(data_object, country = 'Austria',
+#' qual_ind = 'Air pollution', samp_type = 'Total', wind_size = 'small')
+#' plot(subset_data, num_var = 1)
+#' plot(subset_data, num_var = 2)
+plot = function(obj, num_var, ...) {
+  UseMethod('plot')
+}
 plot.wellber = function(obj, num_var, ...) {
 
   ### Required packages: ggplot2
 
   plot_data <- obj %>% extract2(num_var)
-  print(plot_data)
+
   p = ggplot(plot_data, aes(reorder(LOCATION, Rank), Value, fill = In_focus )) +
     geom_bar(stat = "identity") +
     geom_text(aes(label=Rank), position=position_dodge(width=0.5), vjust=-0.5) +
