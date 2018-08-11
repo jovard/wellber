@@ -6,12 +6,21 @@
 #
 #    http://shiny.rstudio.com/
 #
-#library(repmis)
 
-#source_data("https://github.com/jovard/project_data/blob/master/sysdata.rda?raw=True",
-#            cache = FALSE)
+library(repmis)
+source_data("https://github.com/jovard/project_data/blob/master/sysdata.rda?raw=True",
+            cache = FALSE)
 
 library(shiny)
+
+ctry_list <- c("Australia","Austria","Belgium","Canada","Czech Republic",
+               "Denmark","Finland","France","Germany","Greece","Hungary",
+               "Iceland","Ireland","Italy","Japan","Korea","Luxembourg",
+               "Mexico","Netherlands","New Zealand","Norway","Poland",
+               "Portugal","Slovak Republic","Spain","Sweden","Switzerland",
+               "Turkey","United Kingdom","United States","Brazil","Chile",
+               "Estonia","Israel","Latvia","Russia","Slovenia","South Africa",
+               "OECD - Total")
 
 # Define UI for application that draws a histogram
 shinyUI(fluidPage(
