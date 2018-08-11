@@ -6,11 +6,12 @@
 #' @importFrom repmis "source_data"
 #' @importFrom tibble "as_tibble"
 #' @importFrom dplyr "%>%" "select" "left_join"
-#' @seealso \code{\link{select.wellber}}, \code{\link{plot.wellber}}
+#' @seealso \code{\link{selector}}, \code{\link{plot}}
 #' @examples data = load_wellber()
 load_wellber = function() {
 
-  ### Required packages: repmis, dplyr, magrittr, tibble
+  # Create global variables to avoid annoying CRAN notes
+  raw_data = LOCATION = Unit = Value = Flag.Codes = Country = INDICATOR = Indicator = Inequality = NULL
 
   # Read in RDA data
   #load("~/Documents/MSc Data Analytics/Year_3/Adv Data Prog with R (STAT40830)/Wk_11/qualifer/R/sysdata.rda")

@@ -1,6 +1,6 @@
 #' Plot wellber object
 #'
-#' @param obj An object of class \code{wellber} output from \code{\link{select_wellber}}
+#' @param obj An object of class \code{wellber} output from \code{\link{selector}}
 #' @param num_var A flag to indicate whether to plot the indicator or indicator class data
 #' @param ... Other arguments to plot
 #'
@@ -10,7 +10,7 @@
 #' @importFrom dplyr "%>%"
 #' @importFrom magrittr "extract2"
 #' @importFrom stats "reorder"
-#' @seealso \code{\link{load.wellber}}, \code{\link{select.wellber}}
+#' @seealso \code{\link{load_wellber}}, \code{\link{selector}}
 #' @examples
 #' data_object = load_wellber()
 #' subset_data = selector(data_object, country = 'Austria',
@@ -20,13 +20,16 @@
 plot = function(obj, num_var, ...) {
   UseMethod('plot')
 }
+
+#' @export
 plot.wellber = function(obj, num_var, ...) {
 
-  ### Required packages: ggplot2
+  # Create global variables to avoid annoying CRAN notes
+  LOCATION = Value = Rank = In_focus = NULL
 
   plot_data <- obj %>% extract2(num_var)
 
-  p = ggplot(plot_data, aes(reorder(LOCATION, Rank), Value, fill = In_focus )) +
+  p = ggplot2::ggplot(plot_data, aes(reorder(LOCATION, Rank), Value, fill = In_focus )) +
     geom_bar(stat = "identity") +
     geom_text(aes(label=Rank), position=position_dodge(width=0.5), vjust=-0.5) +
 

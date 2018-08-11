@@ -34,7 +34,7 @@ find.range.wellber <- function(tar_ctry_ind, size){
 #' @importFrom dplyr "%>%" "filter" "arrange" "mutate" "desc" "row_number" "case_when" "group_by" "summarise" "slice"
 #' @importFrom magrittr "extract2"
 
-#' @seealso \code{\link{load.wellber}}, \code{\link{plot.wellber}}
+#' @seealso \code{\link{load_wellber}}, \code{\link{plot}}
 #' @examples
 #' data_object = load_wellber()
 #' subset_data = selector(data_object, country = 'Austria',
@@ -43,9 +43,11 @@ selector = function(obj, country, qual_ind, samp_type, wind_size) {
   UseMethod('selector')
 }
 
-# Function manipulates raw data prior to plotting and is based on
-# inputted shiny variables.
+#' @export
 selector.wellber = function(obj, country, qual_ind, samp_type, wind_size) {
+
+  # Create global variables to avoid annoying CRAN notes
+  LOCATION = Value = Indicator = Inequality = Class = Rank = In_focus = NULL
 
   data <- obj %>% extract2(1) %>% # extract variable data_obj from obj
     filter(Inequality == samp_type & Indicator == qual_ind) %>% # Filter accordingly
