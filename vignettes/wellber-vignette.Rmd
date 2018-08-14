@@ -1,0 +1,116 @@
+---
+title: "Well-being comparison with wellber"
+author: "John Vard"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+The _wellber_ package is a wrapper for the [OECD's 2017 Better Life data](http://www.oecdbetterlifeindex.org/) and enables country well-being comparison across 24 Better Life indicators for all 38 OECD countries.
+
+## Basic functionality
+The functionality for the package involves the simple __loading__, __selection__, and __plotting__, based on 4 arguments that include a country, indicator, sample type (male, female, or both), and a window size that determines the plotting range.
+
+<!-- The input parameters include: -->
+
+<!-- * Country -->
+<!--     + Australia, Austria, Belgium, Canada, Czech Republic, Denmark, Finland, France, Germany, Greece, Hungary, Iceland, Ireland, Italy, Japan, Korea, Luxembourg, Mexico, Netherlands, New Zealand, Norway, Poland, Portugal, Slovak Republic, Spain, Sweden, Switzerland, Turkey, United Kingdom, United States, Brazil, Chile, Estonia, Israel, Latvia, Russia, Slovenia, South Africa -->
+
+<!-- * Well-being indicators -->
+<!--     + Air pollution, Dwellings without basic facilities, Educational attainment, Employees working very long hours, Employment rate, Feeling safe walking alone at night, Homicide rate, Household net adjusted disposable income, Household net financial wealth, Housing expenditure, Labour market insecurity, Life expectancy, Life satisfaction, Long-term unemployment rate, Personal earnings, Quality of support network, Rooms per person, Self-reported health, Stakeholder engagement for developing regulations, Student skills, Time devoted to leisure and personal care, Voter turnout, Water quality, Years in education -->
+
+<!-- * Sample -->
+<!--     + Total, Men, Women -->
+
+<!-- * Window size -->
+<!--     + large, medium, small -->
+
+### Options during selection
+
+Country | Well-Being Indicator | Sample | Window Size
+------------- | ------------- | ------------- | -------------
+Australia | Dwellings without basic facilities | Total | Large
+Austria | Educational attainment | Men | Medium
+Belgium | Employees working very long hours | Women | Small
+Brazil | Employment rate
+Canada | Feeling safe walking alone at night
+Chile | Homicide rate
+Czech Republic | Household net adjusted disposable income
+Denmark | Household net financial wealth
+Estonia | Housing expenditure
+Finland | Labour market insecurity
+France | Life expectancy
+Germany | Life satisfaction
+Greece | Long-term unemployment rate
+Hungary | Personal earnings
+Iceland | Quality of support network
+Ireland | Rooms per person
+Israel | Self-reported health
+Italy | Stakeholder engagement for developing regulations
+Japan | Student skills
+Korea | Time devoted to leisure and personal care
+Latvia | Voter turnout
+Luxembourg | Water quality
+Mexico | Years in education
+Netherlands |
+New Zealand |
+Norway |
+Poland |
+Portugal |
+Russia |
+Slovak Republic |
+Slovenia |
+South Africa |
+Spain |
+Sweden |
+Switzerland |
+Turkey |
+United Kingdom |
+United States |
+
+## Example selection & object created
+
+The country of interest in this case is Chile and we're interested in exploring Chile's relative performance in relation to Housing Expenditure. Let's look at the data for both men and women, and we're only concerned with a small window. 
+
+```{r, fig.show='hold', warning=FALSE, message=FALSE}
+library(wellber)
+data_object = load.wellber()
+subset_data = selector(data_object, country = 'Chile', qual_ind = 'Housing expenditure', samp_type = 'Total', wind_size = 'small')
+subset_data
+```
+
+## Plotting for comparison
+
+We'll take the same data from the selection example and plot the Housing Expenditure performance for Chile, along with the class indicator performance relating to Housing in general. The selection of a 'small' window size, results in only five bars being plotted. Along with the performance scores, the relative country rankings for this particular indicator category are also displayed above the bars.   
+
+```{r, fig.show='hold', fig.width=3.4, fig.height=3}
+data_object = load.wellber()
+subset_data = selector(data_object, country = 'Chile', qual_ind = 'Housing expenditure', samp_type = 'Total', wind_size = 'small')
+plot(subset_data, num_var = 1)
+plot(subset_data, num_var = 2)
+```
+
+
+
+## More Examples
+
+You can write math expressions, e.g. $Y = X\beta + \epsilon$, footnotes^[A footnote here.], and tables, e.g. using `knitr::kable()`.
+
+```{r, echo=FALSE, results='asis'}
+knitr::kable(head(mtcars, 10))
+```
+
+Also a quote using `>`:
+
+> "He who gives up [code] safety for [code] speed deserves neither."
+([via](https://twitter.com/hadleywickham/status/504368538874703872))
