@@ -10,9 +10,9 @@
 #' @importFrom dplyr "%>%"
 #' @importFrom magrittr "extract2"
 #' @importFrom stats "reorder"
-#' @seealso \code{\link{load_wellber}}, \code{\link{selector}}
+#' @seealso \code{\link{load.wellber}}, \code{\link{selector}}
 #' @examples
-#' data_object = load_wellber()
+#' data_object = load.wellber()
 #' subset_data = selector(data_object, country = 'Austria',
 #' qual_ind = 'Air pollution', samp_type = 'Total', wind_size = 'small')
 #' plot(subset_data, num_var = 1)

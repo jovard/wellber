@@ -7,7 +7,7 @@
 selector(obj, country, qual_ind, samp_type, wind_size)
 }
 \arguments{
-\item{obj}{An object of class \code{wellber} from \code{\link{load_wellber}}}
+\item{obj}{An object of class \code{wellber} from \code{\link{load.wellber}}}
 
 \item{country}{The selected OECD country to compare against, of which there are 39}
 
@@ -24,10 +24,10 @@ Returns a list of class \code{wellber} that includes the filtered indicator data
 Filters well-being data based on country, indicator, sample type and window size
 }
 \examples{
-data_object = load_wellber()
+data_object = load.wellber()
 subset_data = selector(data_object, country = 'Austria',
 qual_ind = 'Air pollution', samp_type = 'Total', wind_size = 'small')
 }
 \seealso{
-\code{\link{load_wellber}}, \code{\link{plot}}
+\code{\link{load.wellber}}, \code{\link{plot}}
 }

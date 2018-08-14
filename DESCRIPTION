@@ -1,11 +1,18 @@
 Package: wellber
 Type: Package
-Title: What the Package Does (Title Case)
+Title: A Country Well-Being Comparison Package & App 
 Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
+Authors@R: person("John", "Vard", email = "john.vard@ucdconnect.ie", 
+  role = c("aut", "cre"))
+Description: The package allows for country well-being comparison using the 2017 OECD Better 
+    Life Index data. The dataset covers 38 OECD countries, across 24 well-being indicators 
+    that have been categorised into 10 indicator classes. 
+    A shiny app is included for interactive country, indicator and sample selection, for small, 
+    medium and large plot ranges. A bar chart plot is produced for any given selection to display
+    the country of interest and those countries sharing a similar indicator performance. Included
+    in the plots are the relative rankings for the indicator choosen. Furthermore there is the
+    option to plot the indicator class performance for a more focused comparative analysis.
+Depends: R (>= 2.10)
 License: GPL (>=2)
 Encoding: UTF-8
 LazyData: true
@@ -15,5 +22,5 @@ Imports: dplyr,
     magrittr,
     repmis,
     shiny,
-    tibble
+    tibble,
 RoxygenNote: 6.0.1

@@ -7,9 +7,9 @@
 #' @export
 #' @examples id.range = find.range.wellber(tar_ctry_ind=3, size=11)
 find.range.wellber <- function(tar_ctry_ind, size){
-  # Conditional loop based on rank for 39 countries in dataset
-  if ((39 - tar_ctry_ind) < ((size-1)/2)){
-    return(c(seq(39-(size-1),39,1)))
+  # Conditional loop based on rank for 38 countries in dataset
+  if ((38 - tar_ctry_ind) < ((size-1)/2)){
+    return(c(seq(38-(size-1),38,1)))
   }
   else if ((tar_ctry_ind - 1) < ((size-1)/2)){
     return(c(seq(1,size,1)))
@@ -23,7 +23,7 @@ find.range.wellber <- function(tar_ctry_ind, size){
 
 #' Filters well-being data based on country, indicator, sample type and window size
 #'
-#' @param obj An object of class \code{wellber} from \code{\link{load_wellber}}
+#' @param obj An object of class \code{wellber} from \code{\link{load.wellber}}
 #' @param country The selected OECD country to compare against, of which there are 39
 #' @param qual_ind The selected well-being indicator, of which there are 24
 #' @param samp_type The sample type to be considered, either total, men, women
@@ -34,9 +34,9 @@ find.range.wellber <- function(tar_ctry_ind, size){
 #' @importFrom dplyr "%>%" "filter" "arrange" "mutate" "desc" "row_number" "case_when" "group_by" "summarise" "slice"
 #' @importFrom magrittr "extract2"
 
-#' @seealso \code{\link{load_wellber}}, \code{\link{plot}}
+#' @seealso \code{\link{load.wellber}}, \code{\link{plot}}
 #' @examples
-#' data_object = load_wellber()
+#' data_object = load.wellber()
 #' subset_data = selector(data_object, country = 'Austria',
 #' qual_ind = 'Air pollution', samp_type = 'Total', wind_size = 'small')
 selector = function(obj, country, qual_ind, samp_type, wind_size) {

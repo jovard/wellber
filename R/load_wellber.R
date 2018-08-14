@@ -7,18 +7,15 @@
 #' @importFrom tibble "as_tibble"
 #' @importFrom dplyr "%>%" "select" "left_join"
 #' @seealso \code{\link{selector}}, \code{\link{plot}}
-#' @examples data = load_wellber()
-load_wellber = function() {
+#' @examples data = load.wellber()
+load.wellber = function() {
 
   # Create global variables to avoid annoying CRAN notes
-  raw_data = LOCATION = Unit = Value = Flag.Codes = Country = INDICATOR = Indicator = Inequality = NULL
-
-  # Read in RDA data
-  #load("~/Documents/MSc Data Analytics/Year_3/Adv Data Prog with R (STAT40830)/Wk_11/qualifer/R/sysdata.rda")
+  LOCATION = Unit = Value = Flag.Codes = Country = INDICATOR = Indicator = Inequality = NULL
 
   # Read in RDA data from GitHub link
-  source_data("https://github.com/jovard/project_data/blob/master/sysdata.rda?raw=True",
-              cache = FALSE)
+  #source_data("https://github.com/jovard/project_data/blob/master/sysdata.rda?raw=True",
+  #            cache = FALSE)
 
   # Convert to Tibble
   data_ <- tibble::as_tibble(raw_data)

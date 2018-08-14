@@ -7,9 +7,9 @@
 #    http://shiny.rstudio.com/
 #
 
-library(repmis)
-source_data("https://github.com/jovard/project_data/blob/master/sysdata.rda?raw=True",
-            cache = FALSE)
+#library(repmis)
+#source_data("https://github.com/jovard/project_data/blob/master/sysdata.rda?raw=True",
+#            cache = FALSE)
 
 library(shiny)
 
@@ -19,8 +19,20 @@ ctry_list <- c("Australia","Austria","Belgium","Canada","Czech Republic",
                "Mexico","Netherlands","New Zealand","Norway","Poland",
                "Portugal","Slovak Republic","Spain","Sweden","Switzerland",
                "Turkey","United Kingdom","United States","Brazil","Chile",
-               "Estonia","Israel","Latvia","Russia","Slovenia","South Africa",
-               "OECD - Total")
+               "Estonia","Israel","Latvia","Russia","Slovenia","South Africa")
+
+indic_list <- c("Air pollution","Dwellings without basic facilities",
+                "Educational attainment","Employees working very long hours",
+                "Employment rate","Feeling safe walking alone at night",
+                "Homicide rate","Household net adjusted disposable income",
+                "Household net financial wealth","Housing expenditure",
+                "Labour market insecurity","Life expectancy","Life satisfaction",
+                "Long-term unemployment rate","Personal earnings",
+                "Quality of support network","Rooms per person",
+                "Self-reported health",
+                "Stakeholder engagement for developing regulations","Student skills",
+                "Time devoted to leisure and personal care","Voter turnout",
+                "Water quality","Years in education")
 
 # Define UI for application that draws a histogram
 shinyUI(fluidPage(
@@ -32,10 +44,10 @@ shinyUI(fluidPage(
   sidebarLayout(
     sidebarPanel(
       selectInput("ctry", "OECD Country:",
-                  choices=levels(raw_data$Country)),
+                  choices=ctry_list),
 
       selectInput("indic", "Well-Being Indicator:",
-                  choices=levels(raw_data$Indicator)),
+                  choices=indic_list),
 
       radioButtons("subj", "Subject Type:",
                    c("Male & Female" = "Total",
