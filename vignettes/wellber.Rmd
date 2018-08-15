@@ -1,0 +1,123 @@
+---
+title: "Well-being comparison with wellber"
+author: "John Vard"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+The _wellber_ package is a wrapper for the [OECD's 2017 Better Life data](http://www.oecdbetterlifeindex.org/) and enables country well-being comparison across 24 Better Life indicators for 38 OECD countries.
+
+## Basic functionality
+The package provides simple _loading_, _selection_, and _plotting_ of the OECD's 2017 Better Life data, based on __country__, __indicator__, __sample type__, and a __window size__.
+
+For ease-of-use the package includes a shiny app to allow more interactive exploration of a country's well-being performance. For those interested in exploring the app, call `wellber::launch.wellber()` to launch the _Well-Being Comparison Tool_. A screenshot of the tool is provided below.
+
+```{r, echo=FALSE, out.width = "690px"}
+knitr::include_graphics("/Users/jvard/Documents/MSc Data Analytics/Year_3/Adv Data Prog with R (STAT40830)/Wk_11/wellber/vignettes/wellber_app_screen.png")
+```
+
+## Using `load.wellber()`
+
+`load.wellber()` loads the OECD dataset (stored internally within the package), removes unwanted information and creates the _Class_ column variable to group well-being indicators across 11  well-being categories.
+
+```{r, warning=FALSE, message=FALSE}
+library(wellber)
+data_object = load.wellber()
+head(data_object)
+```
+
+The [OECD's 2017 Better Life dataset](https://stats.oecd.org/index.aspx?DataSetCode=BLI) comprises of data from 38 countries, covering 24 well-being indicators. The raw dataset is composed of 8 variables and 3,388 individual data-points.
+
+## Using `selector()`
+
+`selector()` accepts a object of type _wellber_, as provided by `load.wellber()` and the function filters the data. 
+
+For the below example a country is selected along with an well-being indicator. In this case, we're interested in exploring Chile's relative performance in relation to Housing Expenditure. The `samp_type` and `wind_size` parameters determine the sample type (_Men_, _Women_, _Total_) and plot window size (_large_, _medium_, _small_).
+
+```{r, warning=FALSE, message=FALSE}
+data_object = load.wellber()
+subset_data = selector(data_object, country = 'Chile', qual_ind = 'Housing expenditure', samp_type = 'Total', wind_size = 'small')
+subset_data
+```
+
+For guidance on the `country` and `qual_ind` options refer to the __Country and well-being list__ section at the bottom of this vingnette.
+
+`wellber::selector()` also returns a list object of type _wellber_ that includes: 
+
+1. A filtered tibble matching the arguments passed for a specific country, indicator and sample type is returned.
+2. A tibble summary table relating to the indicator class performance for the choosen country and indicator.
+3. A list of the min and max indicator values (for use during plotting).
+
+## Using `plot()`
+
+The filtered data from `selector()` may be plotted using `plot()`.
+
+```{r, eval=FALSE}
+data_object = load.wellber()
+subset_data = selector(data_object, country = 'Chile', qual_ind = 'Housing expenditure', samp_type = 'Total', wind_size = 'small')
+plot(subset_data, num_var = 1)
+plot(subset_data, num_var = 2)
+```
+
+```{r, echo=FALSE, out.width = "750px"}
+knitr::include_graphics("/Users/jvard/Documents/MSc Data Analytics/Year_3/Adv Data Prog with R (STAT40830)/Wk_11/wellber/vignettes/wellber_plots.png")
+```
+
+The plots display the Housing expenditure for Chile (left) and housing performance generally (right) that is a combination of other housing related indicators. 
+
+The _wind_size_ argument from `selector()` controls the plot window - in this case, only 5 bars are displayed. For each plot relative rankings are displayed above the bars to indicate performance across the 38 countries for that particular indicator. For the well-being indicator, minimum and maximum performance values are displayed as dashed lines on the plot.
+
+### Country and well-being list
+
+The `selector()` input arguments for `country` and `qual_ind` are covered below: 
+
+Country | Well-Being Indicator
+------------- | -------------
+Australia | Dwellings without basic facilities 
+Austria | Educational attainment
+Belgium | Employees working very long hours
+Brazil | Employment rate
+Canada | Feeling safe walking alone at night
+Chile | Homicide rate
+Czech Republic | Household net adjusted disposable income
+Denmark | Household net financial wealth
+Estonia | Housing expenditure
+Finland | Labour market insecurity
+France | Life expectancy
+Germany | Life satisfaction
+Greece | Long-term unemployment rate
+Hungary | Personal earnings
+Iceland | Quality of support network
+Ireland | Rooms per person
+Israel | Self-reported health
+Italy | Stakeholder engagement for developing regulations
+Japan | Student skills
+Korea | Time devoted to leisure and personal care
+Latvia | Voter turnout
+Luxembourg | Water quality
+Mexico | Years in education
+Netherlands |
+New Zealand |
+Norway |
+Poland |
+Portugal |
+Russia |
+Slovak Republic |
+Slovenia |
+South Africa |
+Spain |
+Sweden |
+Switzerland |
+Turkey |
+United Kingdom |
+United States |
