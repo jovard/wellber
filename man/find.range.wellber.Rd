@@ -9,7 +9,7 @@ find.range.wellber(tar_ctry_ind, size)
 \arguments{
 \item{tar_ctry_ind}{Target, or choosen country rank}
 
-\item{size}{Plot window size, either small (5), medium (11) or large (15)}
+\item{size}{Plot window size, either Small, Medium or Large}
 }
 \value{
 Returns a list of sequential country ranking IDs that include the ID for the choosen country

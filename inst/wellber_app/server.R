@@ -1,12 +1,3 @@
-#
-# This is the server logic of a Shiny web application. You can run the
-# application by clicking 'Run App' above.
-#
-# Find out more about building applications with Shiny here:
-#
-#    http://shiny.rstudio.com/
-#
-
 library(shiny)
 
 library(wellber)
@@ -23,11 +14,11 @@ shinyServer(function(input, output) {
 
     if (input$hl_category) {
       # Plot the indictaed and group indicated dataset side-by-side
-      grid.arrange(plot(subset,1), plot(subset,2), ncol = 2)
+      grid.arrange(plot(subset,ind_class=0), plot(subset,ind_class=1), ncol = 2)
     }
     else {
       # Plot the indictaed dataset
-      plot(subset,1)
+      plot(subset,ind_class=0)
     }
   })
 })

@@ -13,9 +13,9 @@ selector(obj, country, qual_ind, samp_type, wind_size)
 
 \item{qual_ind}{The selected well-being indicator, of which there are 24}
 
-\item{samp_type}{The sample type to be considered, either total, men, women}
+\item{samp_type}{The sample type to be considered, either Total, Men, Women}
 
-\item{wind_size}{The size of the plot range, either small, medium or large}
+\item{wind_size}{The size of the plot range, either Small, Medium or Large}
 }
 \value{
 Returns a list of class \code{wellber} that includes the filtered indicator dataset, with min and max values, and an indicator class dataset based on the indicator variable selected
@@ -25,8 +25,8 @@ Filters well-being data based on country, indicator, sample type and window size
 }
 \examples{
 data_object = load.wellber()
-subset_data = selector(data_object, country = 'Austria',
-qual_ind = 'Air pollution', samp_type = 'Total', wind_size = 'small')
+subset_data = selector(data_object, country = 'Chile',
+qual_ind = 'Housing expenditure', samp_type = 'Total', wind_size = 'Small')
 }
 \seealso{
 \code{\link{load.wellber}}, \code{\link{plot}}

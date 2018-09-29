@@ -1,7 +1,7 @@
 #' Plot wellber object
 #'
 #' @param obj An object of class \code{wellber} output from \code{\link{selector}}
-#' @param num_var A flag to indicate whether to plot the indicator or indicator class data
+#' @param ind_class A flag to indicate whether to plot the indicator or indicator class data
 #' @param ... Other arguments to plot
 #'
 #' @return Nothing is returned - plot is rendered
@@ -13,21 +13,21 @@
 #' @seealso \code{\link{load.wellber}}, \code{\link{selector}}
 #' @examples
 #' data_object = load.wellber()
-#' subset_data = selector(data_object, country = 'Austria',
-#' qual_ind = 'Air pollution', samp_type = 'Total', wind_size = 'small')
-#' plot(subset_data, num_var = 1)
-#' plot(subset_data, num_var = 2)
-plot = function(obj, num_var, ...) {
+#' subset_data = selector(data_object, country = 'Chile',
+#' qual_ind = 'Housing expenditure', samp_type = 'Total', wind_size = 'Small')
+#' plot(subset_data, ind_class = 0)
+#' plot(subset_data, ind_class = 1)
+plot = function(obj, ind_class, ...) {
   UseMethod('plot')
 }
 
 #' @export
-plot.wellber = function(obj, num_var, ...) {
+plot.wellber = function(obj, ind_class=0, ...) {
 
   # Create global variables to avoid annoying CRAN notes
   LOCATION = Value = Rank = In_focus = NULL
 
-  plot_data <- obj %>% extract2(num_var)
+  plot_data <- obj %>% extract2(ind_class+1)
 
   p = ggplot2::ggplot(plot_data, aes(reorder(LOCATION, Rank), Value, fill = In_focus )) +
     geom_bar(stat = "identity") +
@@ -36,7 +36,7 @@ plot.wellber = function(obj, num_var, ...) {
     theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
     scale_fill_manual( values = c( "yes"="tomato", "no"="grey" ), guide = FALSE )
 
-  if (num_var == 1){
+  if (ind_class == 0){
     min <- obj$min_max[1]
     max <- obj$min_max[2]
 

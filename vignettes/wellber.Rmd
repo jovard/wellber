@@ -42,11 +42,11 @@ The [OECD's 2017 Better Life dataset](https://stats.oecd.org/index.aspx?DataSetC
 
 `selector()` accepts a object of type _wellber_, as provided by `load.wellber()` and the function filters the data. 
 
-For the below example a country is selected along with an well-being indicator. In this case, we're interested in exploring Chile's relative performance in relation to Housing Expenditure. The `samp_type` and `wind_size` parameters determine the sample type (_Men_, _Women_, _Total_) and plot window size (_large_, _medium_, _small_).
+For the below example a country is selected along with an well-being indicator. In this case, we're interested in exploring Chile's relative performance in relation to Housing Expenditure. The `samp_type` and `wind_size` parameters determine the sample type (_Men_, _Women_, _Total_) and plot window size (_Large_, _Medium_, _Small_).
 
 ```{r, warning=FALSE, message=FALSE}
 data_object = load.wellber()
-subset_data = selector(data_object, country = 'Chile', qual_ind = 'Housing expenditure', samp_type = 'Total', wind_size = 'small')
+subset_data = selector(data_object, country = 'Chile', qual_ind = 'Housing expenditure', samp_type = 'Total', wind_size = 'Small')
 subset_data
 ```
 
@@ -64,9 +64,9 @@ The filtered data from `selector()` may be plotted using `plot()`.
 
 ```{r, eval=FALSE}
 data_object = load.wellber()
-subset_data = selector(data_object, country = 'Chile', qual_ind = 'Housing expenditure', samp_type = 'Total', wind_size = 'small')
-plot(subset_data, num_var = 1)
-plot(subset_data, num_var = 2)
+subset_data = selector(data_object, country = 'Chile', qual_ind = 'Housing expenditure', samp_type = 'Total', wind_size = 'Small')
+plot(subset_data, ind_class = 0)
+plot(subset_data, ind_class = 1)
 ```
 
 ```{r, echo=FALSE, out.width = "750px"}

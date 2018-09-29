@@ -13,10 +13,6 @@ load.wellber = function() {
   # Create global variables to avoid annoying CRAN notes
   LOCATION = Unit = Value = Flag.Codes = Country = INDICATOR = Indicator = Inequality = NULL
 
-  # Read in RDA data from GitHub link
-  #source_data("https://github.com/jovard/project_data/blob/master/sysdata.rda?raw=True",
-  #            cache = FALSE)
-
   # Convert to Tibble
   data_ <- tibble::as_tibble(raw_data)
 

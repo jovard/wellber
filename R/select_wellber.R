@@ -1,7 +1,7 @@
 #' Determine range based on choosen country index and plot window size
 #'
 #' @param tar_ctry_ind Target, or choosen country rank
-#' @param size Plot window size, either small (5), medium (11) or large (15)
+#' @param size Plot window size, either Small, Medium or Large
 #'
 #' @return Returns a list of sequential country ranking IDs that include the ID for the choosen country
 #' @export
@@ -26,8 +26,8 @@ find.range.wellber <- function(tar_ctry_ind, size){
 #' @param obj An object of class \code{wellber} from \code{\link{load.wellber}}
 #' @param country The selected OECD country to compare against, of which there are 39
 #' @param qual_ind The selected well-being indicator, of which there are 24
-#' @param samp_type The sample type to be considered, either total, men, women
-#' @param wind_size The size of the plot range, either small, medium or large
+#' @param samp_type The sample type to be considered, either Total, Men, Women
+#' @param wind_size The size of the plot range, either Small, Medium or Large
 #'
 #' @return Returns a list of class \code{wellber} that includes the filtered indicator dataset, with min and max values, and an indicator class dataset based on the indicator variable selected
 #' @export
@@ -37,14 +37,15 @@ find.range.wellber <- function(tar_ctry_ind, size){
 #' @seealso \code{\link{load.wellber}}, \code{\link{plot}}
 #' @examples
 #' data_object = load.wellber()
-#' subset_data = selector(data_object, country = 'Austria',
-#' qual_ind = 'Air pollution', samp_type = 'Total', wind_size = 'small')
+#' subset_data = selector(data_object, country = 'Chile',
+#' qual_ind = 'Housing expenditure', samp_type = 'Total', wind_size = 'Small')
 selector = function(obj, country, qual_ind, samp_type, wind_size) {
   UseMethod('selector')
 }
 
 #' @export
-selector.wellber = function(obj, country, qual_ind, samp_type, wind_size) {
+selector.wellber = function(obj, country='Australia', qual_ind='Air pollution',
+                            samp_type='Total', wind_size='Small') {
 
   # Create global variables to avoid annoying CRAN notes
   LOCATION = Value = Indicator = Inequality = Class = Rank = In_focus = NULL
@@ -62,9 +63,9 @@ selector.wellber = function(obj, country, qual_ind, samp_type, wind_size) {
 
   # Translate window_size to an integer size
   size = switch(wind_size,
-                small = 5,
-                medium = 11,
-                large = 15)
+                Small = 5,
+                Medium = 11,
+                Large = 15)
 
   # Locate country index and use to slice data based on variable size
   ctry_index <- which(data$Country == country)

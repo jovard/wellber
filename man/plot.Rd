@@ -4,12 +4,12 @@
 \alias{plot}
 \title{Plot wellber object}
 \usage{
-plot(obj, num_var, ...)
+plot(obj, ind_class, ...)
 }
 \arguments{
 \item{obj}{An object of class \code{wellber} output from \code{\link{selector}}}
 
-\item{num_var}{A flag to indicate whether to plot the indicator or indicator class data}
+\item{ind_class}{A flag to indicate whether to plot the indicator or indicator class data}
 
 \item{...}{Other arguments to plot}
 }
@@ -21,10 +21,10 @@ Plot wellber object
 }
 \examples{
 data_object = load.wellber()
-subset_data = selector(data_object, country = 'Austria',
-qual_ind = 'Air pollution', samp_type = 'Total', wind_size = 'small')
-plot(subset_data, num_var = 1)
-plot(subset_data, num_var = 2)
+subset_data = selector(data_object, country = 'Chile',
+qual_ind = 'Housing expenditure', samp_type = 'Total', wind_size = 'Small')
+plot(subset_data, ind_class = 0)
+plot(subset_data, ind_class = 1)
 }
 \seealso{
 \code{\link{load.wellber}}, \code{\link{selector}}

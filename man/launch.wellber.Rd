@@ -2,7 +2,7 @@
 % Please edit documentation in R/runapp_wellber.R
 \name{launch.wellber}
 \alias{launch.wellber}
-\title{Executes app to compared country well-being data}
+\title{Launches shiny app to compare country well-being data}
 \usage{
 launch.wellber()
 }
@@ -10,5 +10,5 @@ launch.wellber()
 Nothing is returned but the app is run
 }
 \description{
-Executes app to compared country well-being data
+Launches shiny app to compare country well-being data
 }

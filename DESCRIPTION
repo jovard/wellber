@@ -24,3 +24,6 @@ Imports: dplyr,
     shiny,
     tibble,
 RoxygenNote: 6.0.1
+Suggests: knitr,
+    rmarkdown
+VignetteBuilder: knitr

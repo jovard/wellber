@@ -1,4 +1,4 @@
-#' Executes app to compared country well-being data
+#' Launches shiny app to compare country well-being data
 #'
 #' @return Nothing is returned but the app is run
 #' @export
